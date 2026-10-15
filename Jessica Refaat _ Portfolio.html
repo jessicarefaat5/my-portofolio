@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Jessica Refaat | Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --paper: #F6F8FB;
+  --surface: #FFFFFF;
+  --ink: #16213A;
+  --muted: #55627C;
+  --grid: #D3DAE6;
+  --accent: #2450D6;
+  --hl: #FFF0B3;
+  --hl-edge: #E0A800;
+  --head: "Bricolage Grotesque", "Segoe UI", Arial, sans-serif;
+  --body: "Figtree", "Segoe UI", Arial, sans-serif;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0E1522;
+    --surface: #152033;
+    --ink: #E8EDF6;
+    --muted: #9AA8C2;
+    --grid: #2B3A52;
+    --accent: #8FADFF;
+    --hl: #3A3310;
+    --hl-edge: #F0C53D;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0E1522;
+  --surface: #152033;
+  --ink: #E8EDF6;
+  --muted: #9AA8C2;
+  --grid: #2B3A52;
+  --accent: #8FADFF;
+  --hl: #3A3310;
+  --hl-edge: #F0C53D;
+}
+html { scroll-padding-top: env(safe-area-inset-top, 0px); scroll-behavior: smooth; }
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.6;
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 3px; }
+.wrap { max-width: 880px; margin: 0 auto; padding: 0 22px; }
+
+/* top bar */
+header.top { padding: 20px 0; }
+header.top .wrap { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.brand { font-family: var(--head); font-weight: 700; font-size: 18px; }
+nav { display: flex; gap: 20px; flex-wrap: wrap; font-size: 15px; }
+nav a { color: var(--muted); text-decoration: none; }
+nav a:hover { color: var(--ink); text-decoration: underline; }
+
+/* hero */
+.hero { padding: 40px 0 64px; }
+h1 {
+  font-family: var(--head);
+  font-weight: 700;
+  font-size: clamp(2.6rem, 8vw, 4.6rem);
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+  margin: 0 0 18px;
+}
+.lede { max-width: 60ch; font-size: 1.15rem; color: var(--muted); margin: 0 0 36px; }
+
+.formula {
+  display: flex; align-items: center; gap: 12px;
+  border: 1px solid var(--grid); border-bottom: 0;
+  background: var(--surface);
+  padding: 8px 14px;
+  font-size: 15px;
+  border-radius: 8px 8px 0 0;
+}
+.formula .ref { font-weight: 600; min-width: 34px; padding-right: 12px; border-right: 1px solid var(--grid); }
+.formula .fx { font-style: italic; color: var(--muted); font-family: Georgia, serif; }
+.formula .val { min-height: 1.6em; }
+.caret { display: inline-block; width: 2px; height: 1.1em; background: var(--ink); vertical-align: -3px; margin-left: 1px; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+.sheet-scroll { overflow-x: auto; border-radius: 0 0 8px 8px; }
+table.sheet {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+  background: var(--surface);
+  font-size: 16px;
+}
+.sheet th, .sheet td { border: 1px solid var(--grid); padding: 10px 14px; text-align: left; vertical-align: top; }
+.sheet thead th, .sheet tbody th.rn {
+  background: var(--paper); color: var(--muted); font-weight: 500; font-size: 13px; text-align: center;
+}
+.sheet tbody th.rn { width: 44px; }
+.sheet td.k { color: var(--muted); width: 28%; }
+.sheet td.sel { background: var(--hl); outline: 2px solid var(--hl-edge); outline-offset: -2px; font-weight: 600; }
+
+/* sections */
+section { padding: 56px 0; border-top: 1px solid var(--grid); }
+h2 { font-family: var(--head); font-size: 1.9rem; letter-spacing: -0.015em; margin: 0 0 24px; line-height: 1.15; }
+p { margin: 0 0 14px; max-width: 66ch; }
+
+.skills { width: 100%; border-collapse: collapse; background: var(--surface); }
+.skills th, .skills td { border: 1px solid var(--grid); padding: 12px 16px; text-align: left; vertical-align: top; }
+.skills th { width: 30%; font-weight: 600; background: var(--paper); }
+
+.entry { display: grid; grid-template-columns: 150px 1fr; gap: 6px 28px; padding: 18px 0; border-bottom: 1px solid var(--grid); }
+.entry:last-child { border-bottom: 0; }
+.entry .when { color: var(--muted); font-size: 15px; }
+.entry h3 { margin: 0 0 6px; font-size: 1.1rem; font-family: var(--head); }
+.entry .org { color: var(--muted); font-weight: 500; margin-bottom: 8px; }
+.entry ul { margin: 0; padding-left: 20px; max-width: 64ch; }
+.entry li { margin-bottom: 4px; }
+
+/* projects */
+.empty {
+  border: 2px dashed var(--grid);
+  border-radius: 10px;
+  padding: 28px;
+  background: var(--surface);
+}
+.empty h3 { margin: 0 0 8px; font-family: var(--head); font-size: 1.25rem; }
+.empty p { color: var(--muted); margin-bottom: 0; }
+.projects { display: grid; gap: 18px; }
+.project { border: 1px solid var(--grid); border-radius: 10px; padding: 22px; background: var(--surface); }
+.project h3 { margin: 0 0 8px; font-family: var(--head); font-size: 1.3rem; }
+.project .tools { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0; padding: 0; list-style: none; }
+.project .tools li { font-size: 14px; border: 1px solid var(--grid); padding: 2px 10px; border-radius: 99px; color: var(--muted); }
+
+.project h4 { margin: 20px 0 6px; font-family: var(--head); font-size: 1rem; }
+.project .points { margin: 0; padding-left: 20px; max-width: 66ch; }
+.project .points li { margin-bottom: 6px; }
+.contact-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.contact-list span { display: inline-block; min-width: 90px; color: var(--muted); }
+
+footer { padding: 28px 0 40px; border-top: 1px solid var(--grid); color: var(--muted); font-size: 14px; }
+
+@media (max-width: 640px) {
+  .entry { grid-template-columns: 1fr; }
+  .skills th { width: 38%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .caret { animation: none; }
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">Jessica Refaat</div>
+    <nav aria-label="Sections">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+
+  <div class="hero">
+    <h1>Jessica Refaat Ramzy</h1>
+    <p class="lede" style="margin-bottom:14px">I combine analytical tools—such as Python, SQL, Excel, and Power BI—with a strong sense of ownership and accountability.</p>
+    <p class="lede">My goal is not just to build dashboards or run queries, but to deliver clear, accurate findings on time, with open and seamless communication at every stage of the project.</p>
+
+    <div class="formula" aria-hidden="true">
+      <span class="ref">B3</span>
+      <span class="fx">fx</span>
+      <span class="val"><span id="typed">Data analysis</span><span class="caret"></span></span>
+    </div>
+    <div class="sheet-scroll">
+      <table class="sheet">
+        <thead>
+          <tr><th></th><th>A</th><th>B</th></tr>
+        </thead>
+        <tbody>
+          <tr><th class="rn">1</th><td class="k">Name</td><td>Jessica Refaat Ramzy</td></tr>
+          <tr><th class="rn">2</th><td class="k">Studying</td><td>Business Information Systems, graduating 2028</td></tr>
+          <tr><th class="rn">3</th><td class="k">Aiming for</td><td class="sel">Data analysis</td></tr>
+          <tr><th class="rn">4</th><td class="k">Tools</td><td>Excel, Python, NumPy, Pandas, Tableau, Google Sheets</td></tr>
+          <tr><th class="rn">5</th><td class="k">Based in</td><td>Cairo, Egypt</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <section id="about">
+    <h2>About</h2>
+    <p>I'm studying Business Information Systems at Sadat Academy for Management Sciences, where I'm learning how organizations use data and technology to make decisions.</p>
+    <p>Outside of class I've worked in student support, led groups as a camp counselor, and helped run lighting and sound for live theatre. Each of those taught me to communicate clearly, work in a team and solve problems quickly.</p>
+    <p>I'm now focused on data analysis: cleaning and organizing data, automating it in Google Sheets, and learning to find answers in it with Excel, Python and Tableau.</p>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <table class="skills">
+      <tbody>
+        <tr><th>Data and spreadsheets</th><td>Microsoft Excel, automated data systems in Google Sheets</td></tr>
+        <tr><th>Programming</th><td>Python (NumPy, Pandas), C++</td></tr>
+        <tr><th>Data visualization</th><td>Tableau</td></tr>
+        <tr><th>Microsoft tools</th><td>Microsoft Excel, Word, PowerPoint</td></tr>
+        <tr><th>Working with others</th><td>Communication, teamwork, problem-solving, leadership</td></tr>
+        <tr><th>Languages</th><td>Arabic (native), English (fluent)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="experience">
+    <h2>Experience</h2>
+
+    <div class="entry">
+      <div class="when">2024</div>
+      <div>
+        <h3>Student Support Assistant</h3>
+        <div class="org">Call center role</div>
+        <ul>
+          <li>Acted as the main link between the teacher and students so information flowed smoothly.</li>
+          <li>Answered student questions and gave timely help with schedules and course updates.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">Summer 2023</div>
+      <div>
+        <h3>Camp Counselor</h3>
+        <div class="org">Wellspring Camps</div>
+        <ul>
+          <li>Led group programs and worked with the team to run camp schedules.</li>
+          <li>Organized team activities that built leadership, communication and collaboration among campers.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">Extracurricular</div>
+      <div>
+        <h3>Media Team Member</h3>
+        <div class="org">El Malak Toson Theatre</div>
+        <ul>
+          <li>Managed lighting and sound systems during performances and events.</li>
+          <li>Prepared technical equipment before shows and monitored operations while they ran.</li>
+          <li>Coordinated with the media and organizing teams to keep live events running smoothly.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">Extracurricular</div>
+      <div>
+        <h3>Scout Member</h3>
+        <div class="org">Michael the Archangel Scout, Tosonss</div>
+        <ul>
+          <li>Helped organize scouting events and community activities.</li>
+          <li>Built teamwork, leadership and communication skills through group projects.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>Education and training</h2>
+
+    <div class="entry">
+      <div class="when">Expected 2028</div>
+      <div>
+        <h3>Bachelor's in Business Information Systems</h3>
+        <div class="org">Sadat Academy for Management Sciences, Cairo</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">Graduated 2024</div>
+      <div>
+        <h3>High School Diploma</h3>
+        <div class="org">Saint Mary School, Cairo</div>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">2025</div>
+      <div>
+        <h3>CIB Summer Internship</h3>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">Feb to May 2025</div>
+      <div>
+        <h3>Microsoft Student Activity, Problem Solving Track</h3>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">Jul to Aug 2023</div>
+      <div>
+        <h3>Wellspring Staff Training, Basic Level</h3>
+      </div>
+    </div>
+
+    <div class="entry">
+      <div class="when">Completed</div>
+      <div>
+        <h3>Microsoft Office (Excel)</h3>
+        <div class="org">Coursera</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div id="project-list"></div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Have an internship or job opportunity, or want to work with me? Reach out through any of the details below.</p>
+    <ul class="contact-list">
+      <li><span>Email</span><a href="mailto:jessicarefaat5@gmail.com">jessicarefaat5@gmail.com</a></li>
+      <li><span>Mobile</span><a href="tel:+201202863007">01202863007</a></li>
+      <li><span>LinkedIn</span><a href="https://www.linkedin.com/in/jessica-refaat" rel="noopener">linkedin.com/in/jessica-refaat</a></li>
+      <li><span>Location</span>Cairo, Egypt</li>
+    </ul>
+  </section>
+
+</div>
+</main>
+
+<footer>
+  <div class="wrap">Jessica Refaat Ramzy</div>
+</footer>
+
+<script>
+/* ------------------------------------------------------------
+   ADD PROJECTS HERE
+   Copy the example below, remove the leading // and fill it in.
+   Each project appears as a card. Leave the list empty and the
+   page shows a "projects coming soon" message instead.
+
+   {
+     title: "Sales dashboard in Excel",
+     summary: "What the data was, what you did, and what you found.",
+     sections: [{ heading: "What I found", items: ["Finding one", "Finding two"] }],   // optional
+     tools: ["Excel", "Python"],
+     link: "https://github.com/your-name/your-project"   // optional
+   },
+------------------------------------------------------------ */
+const PROJECTS = [
+  {
+    title: 'Superstore sales analysis in Python',
+    summary: 'An end-to-end exploratory analysis of the Superstore sales dataset (9,994 order lines, 5,009 orders and 793 customers). I cleaned the data, wrote reusable cleaning and analysis code, and used statistics and charts to see which categories, regions and discount levels drive sales and profit.',
+    tools: ['Python', 'Pandas', 'NumPy', 'Matplotlib'],
+    link: 'https://claude.ai/artifact/MuuNYkkQGyAzGTxfUiqyLV',
+    sections: [
+      {
+        heading: 'What I did',
+        items: [
+          'Loaded the Orders, People and Returns sheets with Pandas, then checked data types, missing values and duplicates.',
+          'Filled 11 missing postal codes, converted order and ship dates, and confirmed there were no duplicate rows or invalid dates.',
+          'Flagged outliers in Sales (1,167 rows) and Profit (1,881 rows) with the IQR method.',
+          'Created new columns: shipping duration, order year, quarter and month, profit margin, and profit per quantity.',
+          'Packaged the cleaning steps into reusable functions and a SuperstoreAnalyzer class that calculates the main KPIs.',
+          'Built charts with Matplotlib: sales and profit by category, region and segment, monthly trends, top 10 products, and average profit by discount level.'
+        ]
+      },
+      {
+        heading: 'What I found',
+        items: [
+          'Total sales were about $2.30M and total profit about $286K, an overall profit margin of 12.47%.',
+          'Technology is both the highest-selling and the most profitable category.',
+          'The West region is the most profitable, and the Consumer segment has the highest sales.',
+          'Higher discounts go with lower profit: discount has a strong negative correlation with profit margin (-0.86) and a weaker one with profit (-0.22).',
+          'Orders take about 4 days to ship on average.'
+        ]
+      }
+    ]
+  }
+];
+
+(function renderProjects() {
+  var box = document.getElementById("project-list");
+  if (!PROJECTS.length) {
+    box.innerHTML =
+      '<div class="empty"><h3>First projects are on the way</h3>' +
+      '<p>I\'m working on data analysis projects. Each one will show the data I used, the tools, and what I found.</p></div>';
+    return;
+  }
+  var wrap = document.createElement("div");
+  wrap.className = "projects";
+  PROJECTS.forEach(function (p) {
+    var card = document.createElement("article");
+    card.className = "project";
+    var h = document.createElement("h3");
+    h.textContent = p.title;
+    card.appendChild(h);
+    var s = document.createElement("p");
+    s.textContent = p.summary;
+    card.appendChild(s);
+    if (p.sections && p.sections.length) {
+      p.sections.forEach(function (sec) {
+        var h4 = document.createElement("h4");
+        h4.textContent = sec.heading;
+        card.appendChild(h4);
+        var pl = document.createElement("ul");
+        pl.className = "points";
+        sec.items.forEach(function (it) {
+          var li = document.createElement("li");
+          li.textContent = it;
+          pl.appendChild(li);
+        });
+        card.appendChild(pl);
+      });
+    }
+    if (p.tools && p.tools.length) {
+      var ul = document.createElement("ul");
+      ul.className = "tools";
+      p.tools.forEach(function (t) {
+        var li = document.createElement("li");
+        li.textContent = t;
+        ul.appendChild(li);
+      });
+      card.appendChild(ul);
+    }
+    if (p.link) {
+      var a = document.createElement("a");
+      a.href = p.link;
+      a.rel = "noopener";
+      a.textContent = "View project";
+      card.appendChild(a);
+    }
+    wrap.appendChild(card);
+  });
+  box.appendChild(wrap);
+})();
+
+/* one-time typing moment in the formula bar */
+(function typeFormula() {
+  var el = document.getElementById("typed");
+  if (!el) return;
+  var text = el.textContent;
+  if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  el.textContent = "";
+  var i = 0;
+  setTimeout(function tick() {
+    el.textContent = text.slice(0, ++i);
+    if (i < text.length) setTimeout(tick, 70);
+  }, 500);
+})();
+</script>
+</body>
+</html>
